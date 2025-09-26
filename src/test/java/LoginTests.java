@@ -27,7 +27,7 @@ driver.quit();
     }
 
     @Test
-    public void loginValidEmailPassowrd() throws InterruptedException {
+    public void loginValidEmailPassword() throws InterruptedException {
 
         provideEmail("jennifer.de.jesus@testpro.io");
         providePassword("FCVlLOni");
