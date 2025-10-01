@@ -2,13 +2,15 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static com.google.gson.internal.bind.TypeAdapters.URL;
+
 public class Homework17 extends BaseTest{
     @Test
     public void addSongToPlaylist() throws InterruptedException {
 
         //Test Steps
         //Navigate to the loging page
-        navigatetoURL();
+        navigatetoURL(url);
         //login
         provideEmail("jennifer.de.jesus@testpro.io");
         providePassword("FCVlLOni");

@@ -8,12 +8,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.time.Duration;
 
+import static com.google.gson.internal.bind.TypeAdapters.URL;
+
 public class Homework18 extends BaseTest {
     @Test
     public void playSong() throws InterruptedException {
         //Test Steps
         //Navigate to the loging page
-        navigatetoURL();
+        navigatetoURL(url);
 
         //login
         provideEmail("jennifer.de.jesus@testpro.io");
