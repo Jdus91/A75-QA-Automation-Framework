@@ -2,11 +2,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.time.Duration;
 
@@ -21,15 +20,16 @@ public class BaseTest {
     }
 
     @BeforeMethod
-    public void setupBrowser() {
+    @Parameters({"BaseURL"})
+    public void setupBrowser(String baseURL){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        //options.addArguments("--disable-notifications");
         //precondition
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        navigatetoURL();
+        url = baseURL;
+        navigatetoURL(url);
 
     }
 
@@ -50,9 +50,9 @@ public class BaseTest {
         emailField.sendKeys(email);
     }
 
-    public void navigatetoURL() {
-        url = "https://qa.koel.app/";
-        driver.get(url);
+    public void navigatetoURL(String URL) {
+        // url= "https://qa.koel.app/";
+        driver.get(URL);
     }
 
     public void clickSubmitBtn() {
@@ -83,9 +83,16 @@ public class BaseTest {
         playlist.click();
     }
 
-    public String getAddToPlaylistSuccessMsg(){
-           WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
-           return notification.getText();
-
+    public String getAddToPlaylistSuccessMsg() {
+        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
+        return notification.getText();
+    }
+    public void chooseExistingPlaylist() {
+        WebElement playlist = driver.findElement(By.xpath("//a[text()='Jennys second Playlist']"));
+        playlist.click();
+    }
+    public void selectDeleteBtn() {
+        WebElement selectDeleteBtn = driver.findElement(By.xpath("//button[contains(@class, 'btn-delete-playlist')]"));
+        selectDeleteBtn.click();
     }
 }
