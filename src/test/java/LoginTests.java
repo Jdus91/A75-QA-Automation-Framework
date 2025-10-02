@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -32,9 +33,7 @@ driver.quit();
         provideEmail("jennifer.de.jesus@testpro.io");
         providePassword("FCVlLOni");
         clickSubmitBtn();
-        Thread.sleep(2000);
-        //Expected Result
-        WebElement avatarIcon = driver.findElement(By.cssSelector("img.avatar"));
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
     }
 }
