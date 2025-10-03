@@ -20,7 +20,6 @@ public class BaseTest {
     @BeforeSuite
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
-
     }
 
     @BeforeMethod
@@ -39,7 +38,6 @@ public class BaseTest {
                 //.withTimeout(Duration.ofSeconds(10))
                 //.pollingEvery(Duration.ofSeconds)(2))
                 //.ignoring(Exception.class);
-
     }
 
     @AfterMethod
@@ -69,38 +67,44 @@ public class BaseTest {
     }
 
     public void clickViewAllBtn() {
-        WebElement clickViewAllBtn = driver.findElement(By.cssSelector("button[data-test='view-all-songs-btn']"));
+        WebElement clickViewAllBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn']")));
         clickViewAllBtn.click();
     }
+
     public void selectFirstSong() {
-        WebElement selectFirstSong = driver.findElement(By.xpath("//td[@class='title' and text()='Midnight in Mississippi']"));
+        WebElement selectFirstSong = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='title' and text()='Midnight in Mississippi']")));
         selectFirstSong.click();
     }
+
     public void clickAddToBtn() {
-        WebElement clickAddToBtn = driver.findElement(By.cssSelector("button[data-test='add-to-btn']"));
+        WebElement clickAddToBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='add-to-btn']")));
         clickAddToBtn.click();
     }
+
     public void searchSong(String song) {
-        WebElement searchField = driver.findElement(By.cssSelector("input[type='search']"));
+        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search']")));
         searchField.clear();
         searchField.sendKeys(song);
     }
 
     public void choosePlaylist() {
-        WebElement playlist = driver.findElement(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Jennys Playlist')]"));
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Jennys Playlist')]")));
         playlist.click();
     }
 
     public String getAddToPlaylistSuccessMsg() {
-        WebElement notification = driver.findElement(By.cssSelector("div.success.show"));
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
     }
+
     public void chooseExistingPlaylist() {
-        WebElement playlist = driver.findElement(By.xpath("//a[text()='Jennys second Playlist']"));
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
         playlist.click();
     }
+
     public void selectDeleteBtn() {
-        WebElement selectDeleteBtn = driver.findElement(By.xpath("//button[contains(@class, 'btn-delete-playlist')]"));
+        WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
         selectDeleteBtn.click();
     }
-}
+
+    }
