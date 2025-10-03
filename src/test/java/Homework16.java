@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,32 +13,20 @@ import java.time.Duration;
 public class Homework16 extends BaseTest{
     @Test
     public void registrationNavigation() {
-        //Added ChromeOptions argument below to fix websocket error
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
 
-        //Preconditions
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://qa.koel.app/");
+        //Navigate to the page
+        String url = "https://qa.koel.app/";
+        driver.get(url);
 
         //Test Steps
-        WebElement registrationLink = driver.findElement(By.cssSelector("a[href='registration']"));
+        WebElement registrationLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='registration']")));
         registrationLink.click();
 
-        try {
-            Thread.sleep(2000);
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        finally {
-            //Expected Results
-            String currentUrl = driver.getCurrentUrl();
-            Assert.assertTrue(currentUrl.contains("/registration"));
+        //Expected Results
+        String registrationUrl = "https://qa.koel.app/registration";
+        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
 
             driver.quit();
-        }
 
     }
 }

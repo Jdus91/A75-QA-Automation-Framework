@@ -3,6 +3,7 @@
 
 <suite name="Homework18">
 
+    <parameter name="BaseURL" value="https://qa.koel.app/"/>
     <test name="Example Test" preserve-order="false">
         <classes>
             <class name="Homework18">
