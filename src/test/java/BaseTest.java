@@ -2,6 +2,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,6 +17,7 @@ public class BaseTest {
     public WebDriver driver;
     public String url;
     WebDriverWait wait;
+    Actions actions;
 
     @BeforeSuite
     static void setupClass() {
@@ -34,6 +36,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         url = baseURL;
         navigatetoURL(url);
+        Actions actions= new Actions(driver);
         //fluentWait = new FluentWait<>(driver)
                 //.withTimeout(Duration.ofSeconds(10))
                 //.pollingEvery(Duration.ofSeconds)(2))
@@ -107,4 +110,20 @@ public class BaseTest {
         selectDeleteBtn.click();
     }
 
+    public void doubleClickPlaylist() {
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Jennys Playlist')]")));
+        actions.doubleClick(playlistElement).perform();
     }
+
+    public void enterNewPlaylistName(String newPlaylistName) {
+        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
+        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
+        playlistInputField.sendKeys(newPlaylistName);
+        playlistInputField.sendKeys(Keys.ENTER);
+    }
+
+    public String getRenamePlayListSuccessMsg() {
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        return notification.getText();
+    }
+}
