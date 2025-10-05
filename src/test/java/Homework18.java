@@ -12,35 +12,29 @@ import static com.google.gson.internal.bind.TypeAdapters.URL;
 
 public class Homework18 extends BaseTest {
     @Test
-    public void playSong() throws InterruptedException {
+    public void playSong() {
         //Test Steps
-        //Navigate to the loging page
+        //Navigate to the login page
         navigatetoURL(url);
 
         //login
         provideEmail("jennifer.de.jesus@testpro.io");
         providePassword("FCVlLOni");
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         clickSubmitBtn();
-        Thread.sleep(2000);
+        clickPlay();
+        Assert.assertTrue(isSongPlaying());
+    }
 
-        // Click «Play next song» (media player controls), then the Play button, to play a song.
-        WebElement nextButton = driver.findElement(By.cssSelector("i[data-testid='play-next-btn']"));
-        nextButton.click();
-        Thread.sleep(2000);
-
-        WebElement playButton = driver.findElement(By.cssSelector("span[data-testid='play-btn']"));
+    public void clickPlay() {
+        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
+        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
+        playNextButton.click();
         playButton.click();
-        Thread.sleep(2000);
+    }
 
-        //Validate that a song is playing by verifying if the sound bar, or the pause button is displayed.
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        WebElement pauseButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("span[data-testid='pause-btn']")
-
-        ));
-
-        Thread.sleep(2000);
-        Assert.assertTrue(pauseButton.isDisplayed());
+    public boolean isSongPlaying(){
+        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
+        return  soundBar.isDisplayed();
     }
 }
