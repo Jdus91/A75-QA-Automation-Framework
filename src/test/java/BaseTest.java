@@ -4,7 +4,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -36,7 +35,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         url = baseURL;
         navigatetoURL(url);
-        Actions actions= new Actions(driver);
+        actions= new Actions(driver);
         //fluentWait = new FluentWait<>(driver)
                 //.withTimeout(Duration.ofSeconds(10))
                 //.pollingEvery(Duration.ofSeconds)(2))
@@ -91,7 +90,7 @@ public class BaseTest {
     }
 
     public void choosePlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Jennys Playlist')]")));
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/playlist/105750')")));
         playlist.click();
     }
 
@@ -111,7 +110,8 @@ public class BaseTest {
     }
 
     public void doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'Jennys Playlist')]")));
+        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')]")));
+        //actions.moveToElement(playlistElement).pause(Duration.ofMillis(120)).doubleClick(playlistElement).perform();
         actions.doubleClick(playlistElement).perform();
     }
 
