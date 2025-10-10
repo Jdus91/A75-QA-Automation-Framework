@@ -12,9 +12,6 @@ public class Homework22 extends BaseTest{
     @Test
     public void renamePlaylist(){
 
-        //Test Steps
-
-        //Navigate + login
         LoginPage loginPage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
 
@@ -23,10 +20,6 @@ public class Homework22 extends BaseTest{
         loginPage.clickSubmit();
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
-
-        //Locate Playlist and open playlist
-        //WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')")));
-        //doubleClickPlaylist();
 
         String playlistId = "Jennys Playlist";
         homepage.openPlaylist(playlistId);
