@@ -6,6 +6,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pom.HomePage;
+import pom.LoginPage;
+
 import java.time.Duration;
 
 import static com.google.gson.internal.bind.TypeAdapters.URL;
@@ -16,25 +19,20 @@ public class Homework18 extends BaseTest {
         //Test Steps
         //Navigate to the login page
         navigatetoURL(url);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         //login
-        provideEmail("jennifer.de.jesus@testpro.io");
-        providePassword("FCVlLOni");
-        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        clickSubmitBtn();
-        clickPlay();
-        Assert.assertTrue(isSongPlaying());
-    }
+        loginPage.provideEmail("jennifer.de.jesus@testpro.io");
+        loginPage.providePassword("FCVlLOni");
+        loginPage.clickSubmit();
+        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
+        Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
 
-    public void clickPlay() {
-        WebElement playNextButton = driver.findElement(By.xpath("//i[@data-testid='play-next-btn']"));
-        WebElement playButton = driver.findElement(By.xpath("//span[@data-testid='play-btn']"));
-        playNextButton.click();
-        playButton.click();
-    }
+        //Play song
+        homePage.clickPlay();
 
-    public boolean isSongPlaying(){
-        WebElement soundBar = driver.findElement(By.xpath("//div[@data-testid='sound-bar-play']"));
-        return  soundBar.isDisplayed();
+        // Verify song is playing
+        Assert.assertTrue(homePage.isSongPlaying(), "The song did not start playing.");
     }
 }

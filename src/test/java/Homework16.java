@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pom.RegistrationPage;
 
 import java.net.URL;
 import java.time.Duration;
@@ -14,19 +15,16 @@ public class Homework16 extends BaseTest{
     @Test
     public void registrationNavigation() {
 
-        //Navigate to the page
-        String url = "https://qa.koel.app/";
-        driver.get(url);
+        RegistrationPage registrationPage = new RegistrationPage(driver);
 
-        //Test Steps
-        WebElement registrationLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[href='registration']")));
-        registrationLink.click();
+        //Navigate to the page
+        registrationPage.navigateToMainPage();
+
+        //Click registration link
+        registrationPage.clickRegistrationLink();
 
         //Expected Results
         String registrationUrl = "https://qa.koel.app/registration";
-        Assert.assertEquals(driver.getCurrentUrl(), registrationUrl);
-
-            driver.quit();
-
+        Assert.assertEquals(registrationPage.getCurrentUrl(), registrationUrl);
     }
 }
