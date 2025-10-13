@@ -1,9 +1,11 @@
 package pom;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
@@ -12,9 +14,12 @@ public class HomePage extends BasePage {
 
     By userAvatarIcon = By.cssSelector("img.avatar");
     By searchField = By.cssSelector("input[type='search']");
-    By viewAllButton = By.cssSelector("button[data-test='view-all-songs-btn']");
+    By viewAllButton = By.cssSelector("a[href='#!/songs']");
     By addToButton = By.cssSelector("button[data-test='add-to-btn']");
-    private By notificationSuccess = By.cssSelector("div.success.show");
+    By notificationSuccess = By.cssSelector("div.success.show");
+    By playNextButton = By.xpath("//i[@data-testid='play-next-btn']");
+    By playButton = By.xpath("//span[@data-testid='play-btn']");
+    By soundBar = By.xpath("//div[@data-testid='sound-bar-play']");
 
 
     public WebElement getUserAvatar() {
@@ -49,19 +54,8 @@ public class HomePage extends BasePage {
         playlist.click();
     }
 
-    public void clickPlay() {
-        WebElement playNextButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//i[@data-testid='play-next-btn']")));
-        WebElement playButton = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//span[@data-testid='play-btn']")));
-        playNextButton.click();
-        playButton.click();
-    }
-
-    public boolean isSongPlaying() {
-        WebElement soundBar = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath("//div[@data-testid='sound-bar-play']")));
-        return soundBar.isDisplayed();
+    public void chooseAllSongsList() {
+        click(viewAllButton); // reuse viewAllButton locator
     }
 
     public String getAddToPlaylistSuccessMsg() {
@@ -75,7 +69,7 @@ public class HomePage extends BasePage {
 
     public void openPlaylist(String playlistName) {
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')]")));
-        doubleClick(playlistLocatorById());
+        actions.doubleClick((WebElement) playlistLocatorById());
     }
 
     public void renamePlaylist(String newName) {
