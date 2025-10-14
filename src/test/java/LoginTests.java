@@ -1,27 +1,24 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pom.HomePage;
-import pom.LoginPage;
-
-import java.time.Duration;
+import pagefactory.LoginPage;
+import pagefactory.HomePage;
 
 public class LoginTests extends BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(LoginTests.class);
+
     @Test
     public void loginValidEmailPassword() {
-        
+
         LoginPage loginPage = new LoginPage(driver);
-        HomePage homepage = new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
         
-        loginPage.provideEmail("jennifer.de.jesus@testpro.io");
-        loginPage.providePassword("FCVlLOni");
-        loginPage.clickSubmit();
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
-        Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 }
