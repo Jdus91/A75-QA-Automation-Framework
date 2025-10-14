@@ -28,6 +28,8 @@ public class Homework18 extends BaseTest {
             //All song
             homePage.chooseAllSongsList();
 
+            allSongs.contextClickFirstSong();
+
             allSongs.hoverMediaPlayer();
 
             allSongs.clickPlay();

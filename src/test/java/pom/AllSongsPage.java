@@ -8,6 +8,7 @@ import java.time.Duration;
 
 public class AllSongsPage extends BasePage {
 
+    By firstSong = By.cssSelector("tr.song-item:first-child");
     By mediaPlayer = By.xpath("//*[@id=\"mainFooter\"]/div[1]");
     By playButton = By.xpath("//span[@data-testid='play-btn']");
     By isSongPlaying = By.xpath("//div[@data-testid='sound-bar-play']");
@@ -16,11 +17,9 @@ public class AllSongsPage extends BasePage {
         super(givenDriver);
     }
 
-
     public void contextClickFirstSong() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement firstSong = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("tr.song-item:first-child")));
-        actions.contextClick(firstSong).perform();
+        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        click(firstSong);
     }
 
     public void hoverMediaPlayer() {
