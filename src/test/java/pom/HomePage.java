@@ -17,9 +17,6 @@ public class HomePage extends BasePage {
     By viewAllButton = By.cssSelector("a[href='#!/songs']");
     By addToButton = By.cssSelector("button[data-test='add-to-btn']");
     By notificationSuccess = By.cssSelector("div.success.show");
-    By playNextButton = By.xpath("//i[@data-testid='play-next-btn']");
-    By playButton = By.xpath("//span[@data-testid='play-btn']");
-    By soundBar = By.xpath("//div[@data-testid='sound-bar-play']");
 
 
     public WebElement getUserAvatar() {
@@ -38,8 +35,7 @@ public class HomePage extends BasePage {
     }
 
     public void selectSongByTitle(String songTitle) {
-        WebElement song = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//td[@class='title' and text()='" + songTitle + "']")));
+        WebElement song = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='title' and text()='" + songTitle + "']")));
         song.click();
     }
 
@@ -49,8 +45,7 @@ public class HomePage extends BasePage {
     }
 
     public void choosePlaylist(String playlistName) {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//section[@id='songResultsWrapper']//li[contains(text(),'" + playlistName + "')]")));
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(), '" + playlistName + "')]")));
         playlist.click();
     }
 
@@ -78,6 +73,17 @@ public class HomePage extends BasePage {
 
     public String getRenameMessage() {
         return getRenamePlayListSuccessMsg();
+
+    }
+
+    public void chooseExistingPlaylist() {
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
+        playlist.click();
+    }
+
+    public void selectDeleteBtn() {
+        WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
+        selectDeleteBtn.click();
     }
 }
 

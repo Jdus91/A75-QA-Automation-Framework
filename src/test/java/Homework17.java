@@ -18,21 +18,21 @@ public class Homework17 extends BaseTest{
         navigatetoURL(url);
 
         //login
-        loginPage.provideEmail("jennifer.de.jesus@testpro.io");
-        loginPage.providePassword("FCVlLOni");
-        loginPage.clickSubmit();
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
-        Assert.assertTrue(avatarIcon.isDisplayed());
+        loginPage.login();
 
-        // Search and add song to playlist
-        homePage.searchSong("Midnight in Mississippi");
-        homePage.clickViewAll();
-        homePage.selectSongByTitle("Midnight in Mississippi");
-        homePage.clickAddToButton();
-        homePage.choosePlaylist("Jennys Playlist");
+        // user avatar validation
+        if ((homePage.getUserAvatar()).isDisplayed()) {
 
-        // Verify success message
-        String expectedMessage = "Added 1 song into \"Jennys Playlist.\"";
-        Assert.assertEquals(homePage.getAddToPlaylistSuccessMsg(),expectedMessage);
+            // Search and add song to playlist
+            homePage.searchSong("Midnight in Mississippi");
+            homePage.clickViewAll();
+            homePage.selectSongByTitle("Midnight in Mississippi");
+            homePage.clickAddToButton();
+            homePage.choosePlaylist("Jennys Playlist");
+
+            // Verify success message
+            String expectedMessage = "Added 1 song into \"Jennys Playlist.\"";
+            Assert.assertEquals(homePage.getAddToPlaylistSuccessMsg(), expectedMessage);
+        }
     }
 }

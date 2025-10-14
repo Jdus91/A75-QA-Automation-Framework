@@ -66,32 +66,7 @@ public class BaseTest {
     public void clickSubmitBtn() {
         WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
         submitBtn.click();
-    }
 
-    public void clickViewAllBtn() {
-        WebElement clickViewAllBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn']")));
-        clickViewAllBtn.click();
-    }
-
-    public void selectFirstSong() {
-        WebElement selectFirstSong = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='title' and text()='Midnight in Mississippi']")));
-        selectFirstSong.click();
-    }
-
-    public void clickAddToBtn() {
-        WebElement clickAddToBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='add-to-btn']")));
-        clickAddToBtn.click();
-    }
-
-    public void searchSong(String song) {
-        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search']")));
-        searchField.clear();
-        searchField.sendKeys(song);
-    }
-
-    public void choosePlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/playlist/105750')")));
-        playlist.click();
     }
 
     public String getAddToPlaylistSuccessMsg() {
@@ -107,23 +82,5 @@ public class BaseTest {
     public void selectDeleteBtn() {
         WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
         selectDeleteBtn.click();
-    }
-
-    public void doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')]")));
-        //actions.moveToElement(playlistElement).pause(Duration.ofMillis(120)).doubleClick(playlistElement).perform();
-        actions.doubleClick(playlistElement).perform();
-    }
-
-    public void enterNewPlaylistName(String newPlaylistName) {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys(newPlaylistName);
-        playlistInputField.sendKeys(Keys.ENTER);
-    }
-
-    public String getRenamePlayListSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
     }
 }
