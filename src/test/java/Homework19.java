@@ -10,13 +10,9 @@ import pom.LoginPage;
 public class Homework19 extends BaseTest {
     @Test
     public void deletePlaylist() {
-        //Test Steps
-        //Navigate to the login page
-        navigatetoURL(url);
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
-        AllSongsPage allSongs = new AllSongsPage(driver);
 
         //login
         loginPage.login();
@@ -25,12 +21,10 @@ public class Homework19 extends BaseTest {
         if ((homePage.getUserAvatar()).isDisplayed()) {
 
             //Check if the playlist exists, then click on it.
-            WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
-            chooseExistingPlaylist();
+            homePage.chooseExistingPlaylist();
 
             //Click the red "x PLAYLIST" button on the top right part of the page to delete it.
-            WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
-            selectDeleteBtn();
+            homePage.selectDeleteBtn();
 
             //Expected Result
             String ExpectedString = "Deleted playlist \"Jennys second Playlist.\"";

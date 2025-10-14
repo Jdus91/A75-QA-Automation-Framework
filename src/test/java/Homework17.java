@@ -14,9 +14,6 @@ public class Homework17 extends BaseTest{
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
 
-        //Navigate to the login page
-        navigatetoURL(url);
-
         //login
         loginPage.login();
 

@@ -17,7 +17,8 @@ public class HomePage extends BasePage {
     By viewAllButton = By.cssSelector("a[href='#!/songs']");
     By addToButton = By.cssSelector("button[data-test='add-to-btn']");
     By notificationSuccess = By.cssSelector("div.success.show");
-
+    By existingPlaylist = By.xpath("//a[text()='Jennys second Playlist']");
+    By deleteButton = By.xpath("//button[contains(@class, 'btn-delete-playlist')]");
 
     public WebElement getUserAvatar() {
         return findElement(userAvatarIcon);
@@ -56,6 +57,7 @@ public class HomePage extends BasePage {
     public String getAddToPlaylistSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(notificationSuccess));
         return notification.getText();
+
     }
 
     public By playlistLocatorById() {
@@ -64,7 +66,7 @@ public class HomePage extends BasePage {
 
     public void openPlaylist(String playlistName) {
         WebElement playlist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')]")));
-        actions.doubleClick((WebElement) playlistLocatorById());
+        doubleClick(playlistLocatorById());
     }
 
     public void renamePlaylist(String newName) {
@@ -73,17 +75,13 @@ public class HomePage extends BasePage {
 
     public String getRenameMessage() {
         return getRenamePlayListSuccessMsg();
-
     }
 
     public void chooseExistingPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
-        playlist.click();
+        click(existingPlaylist);
     }
 
     public void selectDeleteBtn() {
-        WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
-        selectDeleteBtn.click();
+        click(deleteButton);
     }
 }
-

@@ -7,7 +7,7 @@ import pom.HomePage;
 import pom.LoginPage;
 
 public class Homework22 extends BaseTest{
-    String newPlaylistName = "Edited Jennys Playlist";
+    //String newPlaylistName = "Edited Jennys Playlist";
 
     @Test
     public void renamePlaylist(){
@@ -21,12 +21,13 @@ public class Homework22 extends BaseTest{
         WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
         Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
 
+        String newPlaylistName = "Edited Jennys Playlist";
         String playlistId = "Jennys Playlist";
         homepage.openPlaylist(playlistId);
         homepage.renamePlaylist(newPlaylistName);
 
         String updatedPlaylistMsg = "Updated playlist \"Edited Jennys Playlist.\"";
         Assert.assertEquals(homepage.getRenameMessage(), updatedPlaylistMsg);
-        }
     }
+}
 

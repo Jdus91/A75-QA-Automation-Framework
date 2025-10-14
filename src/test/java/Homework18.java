@@ -12,9 +12,6 @@ public class Homework18 extends BaseTest {
 
     @Test
     public void playSong() {
-        //Test Steps
-        //Navigate to the login page
-        navigatetoURL(url);
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);

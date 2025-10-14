@@ -52,6 +52,9 @@ public class BasePage {
             log.error("Timeout");
         }
     }
+    public void doubleClick (By locator) {
+        actions.doubleClick(findElement(locator)).perform();
+    }
 
     public void enterNewPlaylistName(String newPlaylistName) {
         WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));

@@ -7,10 +7,10 @@ import pom.HomePage;
 import pom.LoginPage;
 
 public class Homework21 extends BaseTest {
-    String newPlaylistName = "Edited Jennys Playlist";
+    //String newPlaylistName = "Edited Jennys Playlist";
 
     @Test
-    public void renamePlaylist(){
+    public void renamePlaylist() {
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homepage = new HomePage(driver);
@@ -22,6 +22,7 @@ public class Homework21 extends BaseTest {
         Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
 
         String playlistId = "Jennys Playlist";
+        String newPlaylistName = "Edited Jennys Playlist";
         homepage.openPlaylist(playlistId);
         homepage.renamePlaylist(newPlaylistName);
 

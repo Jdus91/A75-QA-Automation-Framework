@@ -18,7 +18,6 @@ public class AllSongsPage extends BasePage {
     }
 
     public void contextClickFirstSong() {
-        //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         click(firstSong);
     }
 
