@@ -33,7 +33,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, '/playlist/105750')]")
     WebElement currentPlaylist;
 
-
     @FindBy(xpath = "//button[contains(@class, 'btn-delete-playlist')]")
     WebElement deleteButton;
 
@@ -79,7 +78,7 @@ public class HomePage extends BasePage {
         return findElement(notificationSuccess).getText();
     }
 
-    public void openPlaylist() {
+    public void openPlaylist(String playlistName) {
         doubleClick(currentPlaylist);
     }
 

@@ -47,40 +47,12 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
     public void navigatetoURL(String URL) {
         driver.get(URL);
-    }
-
-    public void clickSubmitBtn() {
-        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        submitBtn.click();
-
     }
 
     public String getAddToPlaylistSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
-    }
-
-    public void chooseExistingPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
-        playlist.click();
-    }
-
-    public void selectDeleteBtn() {
-        WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
-        selectDeleteBtn.click();
     }
 }

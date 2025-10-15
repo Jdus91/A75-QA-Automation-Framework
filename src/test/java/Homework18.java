@@ -1,12 +1,9 @@
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pom.AllSongsPage;
-import pom.HomePage;
-import pom.LoginPage;
+import pagefactory.AllSongsPage;
+import pagefactory.HomePage;
+import pagefactory.LoginPage;
 
 public class Homework18 extends BaseTest {
 
@@ -17,24 +14,18 @@ public class Homework18 extends BaseTest {
         HomePage homePage = new HomePage(driver);
         AllSongsPage allSongs = new AllSongsPage(driver);
 
-        //login
-        loginPage.login();
+        loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
 
-        // user avatar validation
-        if ((homePage.getUserAvatar()).isDisplayed()) {
-            //All song
-            homePage.chooseAllSongsList();
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-            allSongs.contextClickFirstSong();
+        homePage.chooseAllSongsList();
 
-            allSongs.hoverMediaPlayer();
+        allSongs.contextClickFirstSong();
 
-            allSongs.clickPlay();
+        allSongs.hoverMediaPlayer();
 
-            // Verify song is playing
-            Assert.assertTrue(allSongs.isSongPlaying());
-        }
+        allSongs.clickPlay();
 
-
+        Assert.assertTrue(allSongs.isSongPlaying());
     }
 }
