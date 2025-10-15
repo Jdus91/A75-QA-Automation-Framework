@@ -18,7 +18,7 @@ public class LoginTests extends BaseTest {
         HomePage homePage = new HomePage(driver);
 
         loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
-        
+
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 }
