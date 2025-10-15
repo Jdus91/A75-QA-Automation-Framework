@@ -13,10 +13,10 @@ import org.testng.annotations.*;
 import java.time.Duration;
 
 public class BaseTest {
-    public WebDriver driver;
-    public String url;
-    WebDriverWait wait;
-    Actions actions;
+    public static WebDriver driver = null;
+    public static String url = null;
+    public static WebDriverWait wait = null;
+    public static Actions actions = null;
 
     @BeforeSuite
     static void setupClass() {
@@ -47,82 +47,11 @@ public class BaseTest {
         driver.quit();
     }
 
-    public void providePassword(String password) {
-        WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='password']")));
-        passwordField.clear();
-        passwordField.sendKeys(password);
-    }
-
-    public void provideEmail(String email) {
-        WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='email']")));
-        emailField.clear();
-        emailField.sendKeys(email);
-    }
-
     public void navigatetoURL(String URL) {
         driver.get(URL);
     }
 
-    public void clickSubmitBtn() {
-        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
-        submitBtn.click();
-    }
-
-    public void clickViewAllBtn() {
-        WebElement clickViewAllBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='view-all-songs-btn']")));
-        clickViewAllBtn.click();
-    }
-
-    public void selectFirstSong() {
-        WebElement selectFirstSong = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//td[@class='title' and text()='Midnight in Mississippi']")));
-        selectFirstSong.click();
-    }
-
-    public void clickAddToBtn() {
-        WebElement clickAddToBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[data-test='add-to-btn']")));
-        clickAddToBtn.click();
-    }
-
-    public void searchSong(String song) {
-        WebElement searchField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[type='search']")));
-        searchField.clear();
-        searchField.sendKeys(song);
-    }
-
-    public void choosePlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(@href, '/playlist/105750')")));
-        playlist.click();
-    }
-
     public String getAddToPlaylistSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
-
-    public void chooseExistingPlaylist() {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='Jennys second Playlist']")));
-        playlist.click();
-    }
-
-    public void selectDeleteBtn() {
-        WebElement selectDeleteBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class, 'btn-delete-playlist')]")));
-        selectDeleteBtn.click();
-    }
-
-    public void doubleClickPlaylist() {
-        WebElement playlistElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[contains(@href, '/playlist/105750')]")));
-        //actions.moveToElement(playlistElement).pause(Duration.ofMillis(120)).doubleClick(playlistElement).perform();
-        actions.doubleClick(playlistElement).perform();
-    }
-
-    public void enterNewPlaylistName(String newPlaylistName) {
-        WebElement playlistInputField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[name='name']")));
-        playlistInputField.sendKeys(Keys.chord(Keys.CONTROL,"A", Keys.BACK_SPACE));
-        playlistInputField.sendKeys(newPlaylistName);
-        playlistInputField.sendKeys(Keys.ENTER);
-    }
-
-    public String getRenamePlayListSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
     }

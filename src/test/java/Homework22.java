@@ -3,10 +3,10 @@ import org.testng.annotations.Test;
 import pagefactory.HomePage;
 import pagefactory.LoginPage;
 
-public class Homework21 extends BaseTest {
+public class Homework22 extends BaseTest{
 
     @Test
-    public void renamePlaylist() {
+    public void renamePlaylist(){
 
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
@@ -24,3 +24,4 @@ public class Homework21 extends BaseTest {
         Assert.assertEquals(homePage.getRenameMessage(), updatedPlaylistMsg);
     }
 }
+

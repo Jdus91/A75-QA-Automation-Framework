@@ -1,39 +1,24 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
+import pagefactory.LoginPage;
+import pagefactory.HomePage;
 
 public class LoginTests extends BaseTest {
-
-    public void loginEmptyEmailPassword() {
-
-//      Added ChromeOptions argument below to fix websocket error
-ChromeOptions options = new ChromeOptions();
-options.addArguments("--remote-allow-origins=*");
-
-WebDriver driver = new ChromeDriver(options);//creating an object called driver
-driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-// TODO (for students): Review the configuration as part of HW15
-String url = "https://qa.koel.app/";
-driver.get(url);
-Assert.assertEquals(driver.getCurrentUrl(), url);
-driver.quit();
-    }
+    private static final Logger log = LoggerFactory.getLogger(LoginTests.class);
 
     @Test
     public void loginValidEmailPassword() {
 
-        provideEmail("jennifer.de.jesus@testpro.io");
-        providePassword("FCVlLOni");
-        clickSubmitBtn();
-        WebElement avatarIcon = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//img[@class='avatar']")));
-        Assert.assertTrue(avatarIcon.isDisplayed());//test pass only if the input is true
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
+
+        loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
+
+        Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
     }
 }
