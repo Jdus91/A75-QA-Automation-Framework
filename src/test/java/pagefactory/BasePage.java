@@ -53,7 +53,6 @@ public class BasePage {
 
     public void contextClick(WebElement element) {
         actions.contextClick(findElement(element)).perform();
+
     }
-
-
 }
