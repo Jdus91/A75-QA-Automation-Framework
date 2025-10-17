@@ -2,6 +2,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -33,8 +35,9 @@ public class BaseTest {
 
     @BeforeSuite
     static void setupClass() {
-        WebDriverManager.chromedriver().setup();
+        //WebDriverManager.chromedriver().setup();
         //WebDriverManager.firefoxdriver().setup();
+        //WebDriverManager.edgedriver().setup();
     }
 
     @BeforeMethod
@@ -45,11 +48,12 @@ public class BaseTest {
         //precondition
         //driver = new ChromeDriver(options);
         //driver = new FirefoxDriver();
+        //driver = new EdgeDriver();
         driver = pickBrowser(System.getProperty("browser"));
         threadDriver.set(pickBrowser(System.getProperty("browser")));
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         getDriver().manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         url = baseURL;
         navigatetoURL(url);
         actions = new Actions(getDriver());
@@ -70,6 +74,10 @@ public class BaseTest {
         getDriver().get(url);
     }
 
+    public void closeBrowser(){
+        driver.quit();
+    }
+
     public String getAddToPlaylistSuccessMsg() {
         WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
         return notification.getText();
@@ -78,10 +86,19 @@ public class BaseTest {
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
         String gridUrl = "http://192.168.0.97:4444/";
+
         switch (browser) {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return driver = new FirefoxDriver();
+            case "chrome":
+                caps.setCapability("browserName", "chrome");
+                return driver = new RemoteWebDriver(URI.create(gridUrl).toURL(), caps);
+            case "MicrosoftEdge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions=new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                return driver = new EdgeDriver(edgeOptions);
 
             //Grid Capable
             case "grid-firefox":
@@ -93,6 +110,7 @@ public class BaseTest {
             case "grid-edge":
                 caps.setCapability("browserName", "MicrosoftEdge");
                 return driver = new RemoteWebDriver(URI.create(gridUrl).toURL(), caps);
+            //Cloud Execution
             case "cloud":
                 return lambdaTest();
             default:
@@ -108,15 +126,14 @@ public class BaseTest {
             browserOptions.setPlatformName("Windows 10");
             browserOptions.setBrowserVersion("dev");
             HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-            ltOptions.put("username", "Your LambdaTest Username");
-            ltOptions.put("accessKey", "Your LambdaTest Access Key");
+            ltOptions.put("username", "jenniferdejesus");
+            ltOptions.put("accessKey", "LT_5X3jPaBgaQ9PaYwyQ4NQdHzv9wQ9vOh1MxX4prdaBdORnDD");
             ltOptions.put("project", "Untitled");
             ltOptions.put("name", this.getClass().getName());
-            ltOptions.put("selenium_version", "4.0.0");
             ltOptions.put("w3c", true);
+            ltOptions.put("plugin", "java-testNG");
             browserOptions.setCapability("LT:Options", ltOptions);
 
             return new RemoteWebDriver(new URL(hubURL), browserOptions);
-
         }
     }

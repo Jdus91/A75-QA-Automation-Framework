@@ -8,7 +8,7 @@ public class Homework16 extends BaseTest {
     public void registrationNavigation() {
 
         //RegistrationPage registrationPage = new RegistrationPage(driver);
-        RegistrationPage registrationPage = new RegistrationPage(getDriver()driver);
+        RegistrationPage registrationPage = new RegistrationPage(getDriver());
 
         registrationPage.navigateToMainPage();
 
