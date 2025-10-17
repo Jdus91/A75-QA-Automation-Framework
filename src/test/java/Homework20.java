@@ -16,11 +16,11 @@ public class Homework20 extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        homePage.chooseExistingPlaylist();
+        homePage.chooseExistingPlaylist2();
 
         homePage.selectDeleteBtn();
 
-        String ExpectedString = "Deleted playlist \"Jennys second Playlist.\"";
+        String ExpectedString = "Deleted playlist \"Jennys third Playlist.\"";
 
         Assert.assertEquals(getAddToPlaylistSuccessMsg(), ExpectedString);
     }

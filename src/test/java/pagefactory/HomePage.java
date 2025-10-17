@@ -6,6 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static java.sql.DriverManager.getDriver;
 
 public class HomePage extends BasePage {
     public HomePage(WebDriver givenDriver) {
@@ -30,8 +35,14 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[text()='Jennys second Playlist']")
     WebElement existingPlaylist;
 
+    @FindBy(xpath = "//a[text()='Jennys third Playlist']")
+    WebElement existingPlaylist2;
+
     @FindBy(xpath = "//a[contains(@href, '/playlist/105750')]")
     WebElement currentPlaylist;
+
+    @FindBy(xpath = "//a[contains(@href, '/playlist/105750')]")
+    WebElement currentPlaylist2;
 
     @FindBy(xpath = "//button[contains(@class, 'btn-delete-playlist')]")
     WebElement deleteButton;
@@ -65,9 +76,12 @@ public class HomePage extends BasePage {
     }
 
     public void choosePlaylist(String playlistName) {
-        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(
-                By.xpath("//a[contains(text(), '" + playlistName + "')]")));
+        WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//section[contains(@class,'existing-playlists')]//li[contains(@class,'playlist') and text()='" + playlistName + "']")));
         click(playlist);
+        //public void choosePlaylist(String playlistName) {
+        //WebElement playlist = wait.until(ExpectedConditions.elementToBeClickable(
+        //By.xpath("//a[contains(text(), '" + playlistName + "')]")));
+        //click(playlist);
     }
 
     public void chooseAllSongsList() {
@@ -75,11 +89,17 @@ public class HomePage extends BasePage {
     }
 
     public String getAddToPlaylistSuccessMsg() {
+        //WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        //wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.success.show")));
+        //return notificationSuccess.getText().trim();
         return findElement(notificationSuccess).getText();
     }
 
     public void openPlaylist(String playlistName) {
         doubleClick(currentPlaylist);
+    }
+    public void openPlaylist2(String playlistName) {
+        doubleClick(currentPlaylist2);
     }
 
     public void renamePlaylist(String newPlaylistName) {
@@ -96,6 +116,11 @@ public class HomePage extends BasePage {
     public void chooseExistingPlaylist() {
         click(existingPlaylist);
     }
+
+    public void chooseExistingPlaylist2() {
+        click(existingPlaylist2);
+    }
+
 
     public void selectDeleteBtn() {
         click(deleteButton);

@@ -23,6 +23,7 @@ public class Homework21 extends BaseTest {
         homePage.renamePlaylist(newPlaylistName);
 
         String updatedPlaylistMsg = "Updated playlist \"Edited Jennys Playlist.\"";
+
         Assert.assertEquals(homePage.getRenameMessage(), updatedPlaylistMsg);
     }
 }
