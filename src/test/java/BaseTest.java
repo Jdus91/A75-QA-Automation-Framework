@@ -29,7 +29,7 @@ public class BaseTest {
 
     private static final ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 
-    public static WebDriver getDriver(){
+    public static WebDriver getDriver() {
         return threadDriver.get();
     }
 
@@ -42,7 +42,7 @@ public class BaseTest {
 
     @BeforeMethod
     @Parameters({"BaseURL"})
-        public void setupBrowser(String baseURL) throws MalformedURLException {
+    public void setupBrowser(String baseURL) throws MalformedURLException {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         //precondition
@@ -74,14 +74,14 @@ public class BaseTest {
         getDriver().get(url);
     }
 
-    public void closeBrowser(){
-        driver.quit();
-    }
+    //public void closeBrowser(){
+    //driver.quit();
+//}
 
-    public String getAddToPlaylistSuccessMsg() {
-        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
-        return notification.getText();
-    }
+    //public String getAddToPlaylistSuccessMsg() {
+        //WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.success.show")));
+        //return notification.getText();
+    //}
 
     public WebDriver pickBrowser(String browser) throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();

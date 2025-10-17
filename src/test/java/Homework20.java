@@ -22,6 +22,6 @@ public class Homework20 extends BaseTest {
 
         String ExpectedString = "Deleted playlist \"Jennys third Playlist.\"";
 
-        Assert.assertEquals(getAddToPlaylistSuccessMsg(), ExpectedString);
+        Assert.assertEquals(homePage.getDeletePlaylistSuccessMsg(), ExpectedString);
     }
 }
