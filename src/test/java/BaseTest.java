@@ -77,7 +77,8 @@ public class BaseTest {
 
             case "edge":
             case "microsoftedge": // Allow for multiple names.
-                WebDriverManager.edgedriver().setup();
+                WebDriverManager.edgedriver().useMirror().setup();
+                //WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 return new EdgeDriver(edgeOptions);
@@ -113,8 +114,8 @@ public class BaseTest {
         browserOptions.setBrowserVersion("dev");
         HashMap<String, Object> ltOptions = new HashMap<>();
         // It's a best practice to get credentials from environment variables, not hardcode them.
-        ltOptions.put("username", System.getenv("LT_USERNAME"));
-        ltOptions.put("accessKey", System.getenv("LT_ACCESS_KEY"));
+        ltOptions.put("username", "jenniferdejesus");
+        ltOptions.put("accessKey", "LT_5X3jPaBgaQ9PaYwyQ4NQdHzv9wQ9vOh1MxX4prdaBdORnDD");
         ltOptions.put("project", "Untitled");
         ltOptions.put("name", this.getClass().getName());
         ltOptions.put("w3c", true);
