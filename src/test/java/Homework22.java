@@ -8,19 +8,21 @@ public class Homework22 extends BaseTest{
     @Test
     public void renamePlaylist(){
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
+        //HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        String playlistId = "Jennys Playlist";
-        String newPlaylistName = "Edited Jennys Playlist";
+        String playlistId = "Jennys fourth Playlist";
+        String newPlaylistName = "Edited Jennys fourth Playlist";
 
-        homePage.openPlaylist(playlistId);
+        homePage.openPlaylist2(playlistId);
         homePage.renamePlaylist(newPlaylistName);
 
-        String updatedPlaylistMsg = "Updated playlist \"Edited Jennys Playlist.\"";
+        String updatedPlaylistMsg = "Updated playlist \"Edited Jennys fourth Playlist.\"";
         Assert.assertEquals(homePage.getRenameMessage(), updatedPlaylistMsg);
     }
 }

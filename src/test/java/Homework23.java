@@ -6,7 +6,8 @@ public class Homework23 extends BaseTest{
     @Test
     public void registrationNavigation() {
 
-        RegistrationPage registrationPage = new RegistrationPage(driver);
+        //RegistrationPage registrationPage = new RegistrationPage(driver);
+        RegistrationPage registrationPage = new RegistrationPage(getDriver());
 
         //Navigate to the page
         registrationPage.navigateToMainPage();
