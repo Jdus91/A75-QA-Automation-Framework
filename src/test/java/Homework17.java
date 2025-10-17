@@ -1,6 +1,3 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pagefactory.HomePage;
@@ -8,7 +5,7 @@ import pagefactory.LoginPage;
 
 public class Homework17 extends BaseTest {
     @Test
-    public void addSongToPlaylist() throws InterruptedException {
+    public void addSongToPlaylist() {
         //LoginPage loginPage = new LoginPage(driver);
         //HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(getDriver());
@@ -18,17 +15,14 @@ public class Homework17 extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        homePage.searchSong("For the Poor");
+        homePage.searchSong("Episode 2");
         homePage.clickViewAll();
-        homePage.selectSongByTitle("For the Poor");
-        Thread.sleep(3000);
+        homePage.selectSongByTitle("Episode 2");
         homePage.clickAddToButton();
-        Thread.sleep(1000);
         homePage.choosePlaylist("Jennys Playlist");
-        Thread.sleep(1000);
 
         String expectedMessage = "Added 1 song into \"Jennys Playlist.\"";
-        Thread.sleep(1000);
+
         Assert.assertEquals(homePage.getAddToPlaylistSuccessMsg(), expectedMessage);
     }
 }
