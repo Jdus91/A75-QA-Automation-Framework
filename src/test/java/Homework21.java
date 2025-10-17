@@ -8,8 +8,10 @@ public class Homework21 extends BaseTest {
     @Test
     public void renamePlaylist() {
 
-        LoginPage loginPage = new LoginPage(driver);
-        HomePage homePage = new HomePage(driver);
+        //LoginPage loginPage = new LoginPage(driver);
+        //HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(getDriver());
+        HomePage homePage = new HomePage(getDriver());
 
         loginPage.provideEmail("jennifer.de.jesus@testpro.io").providePassword("FCVlLOni").clickSubmit();
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
