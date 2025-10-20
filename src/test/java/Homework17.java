@@ -15,9 +15,9 @@ public class Homework17 extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        homePage.searchSong("Reactor");
+        homePage.searchSong("Down in the Swamp");
         homePage.clickViewAll();
-        homePage.selectSongByTitle("Reactor");
+        homePage.selectSongByTitle("Down in the Swamp");
         homePage.clickAddToButton();
         homePage.choosePlaylist("Jennys Playlist");
 
