@@ -77,8 +77,7 @@ public class BaseTest {
 
             case "edge":
             case "microsoftedge": // Allow for multiple names.
-                WebDriverManager.edgedriver().useMirror().setup();
-                //WebDriverManager.edgedriver().setup();
+                WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--remote-allow-origins=*");
                 return new EdgeDriver(edgeOptions);
