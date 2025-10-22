@@ -77,11 +77,46 @@ public class LoginStepDefinition {
 
     @Then("I see an error message")
     public void iSeeAnErrorMessage() {
-        HomePage homePage = new HomePage(driver);
-        homePage.assertLoginFailed();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.assertLoginFailed();
         //By formLocator = By.xpath("//*[@id='app']/div/div/form");
         //wait.until(ExpectedConditions.attributeContains(formLocator, "class", "error"));
         //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='app']/div/div/form"))).isDisplayed());
+    }
+    @Then("I see the email required field validation message")
+    public void iSeeTheEmailRequiredFieldValidationMessage() {
+        // 1. Define the expected Login Page URL (ensure this is correct)
+        final String expectedUrl = "https://qa.koel.app/";
+
+        // 2. Define the form locator to ensure the element is still present
+        By formLocator = By.xpath("//*[@id='app']/div/div/form");
+
+        // Assertion 1: Check that the URL did NOT change, proving submission was blocked.
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, expectedUrl,
+                "Expected to remain on the Login page, but the URL changed.");
+
+        // Assertion 2: Check that the form element is still visible.
+        Assert.assertTrue(driver.findElement(formLocator).isDisplayed(),
+                "Login form is not displayed, suggesting the page content changed.");
+    }
+
+    @Then("I see the password required field validation message")
+    public void iSeeThePasswordRequiredFieldValidationMessage() {
+        // 1. Define the expected Login Page URL (ensure this is correct)
+        final String expectedUrl = "https://qa.koel.app/";
+
+        // 2. Define the form locator to ensure the element is still present
+        By formLocator = By.xpath("//*[@id=\"app\"]/div/div/form/input[2]");
+
+        // Assertion 1: Check that the URL did NOT change, proving submission was blocked.
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(currentUrl, expectedUrl,
+                "Expected to remain on the Login page, but the URL changed.");
+
+        // Assertion 2: Check that the form element is still visible.
+        Assert.assertTrue(driver.findElement(formLocator).isDisplayed(),
+                "Login form is not displayed, suggesting the page content changed.");
     }
 
     @After
