@@ -3,13 +3,9 @@
 
 <suite name="Cucumber">
 
-        <test name="Example Test" preserve-order="false">
+    <test name="Example Test" preserve-order="false">
         <classes>
-            <class name="CucumberRunner">
-                <methods>
-                    <include name="playSong"/>
-                </methods>
-            </class>
+            <class name="CucumberRunner"/>
         </classes>
     </test>
 </suite>

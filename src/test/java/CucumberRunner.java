@@ -9,19 +9,21 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(features = {"src/test/resources/features/Login.feature"})
 
 public class CucumberRunner extends AbstractTestNGCucumberTests {
+
     private TestNGCucumberRunner testNGCucumberRunner;
 
     @BeforeClass(alwaysRun = true)
-    public void setupCucumber(){
+    public void setupCucumber() {
         testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
     }
+
     @DataProvider
-    public Object[][] features(){
+    public Object[][] features() {
         return testNGCucumberRunner.provideScenarios();
     }
-    @AfterClass
-    public void tearDownClass(){
+
+    @AfterClass(alwaysRun = true)
+    public void tearDownClass() {
         testNGCucumberRunner.finish();
     }
-
 }
