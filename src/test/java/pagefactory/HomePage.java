@@ -48,6 +48,7 @@ public class HomePage extends BasePage {
 
     public WebElement getUserAvatar() {
         return findElement(userAvatarIcon);
+
     }
 
     public void searchSong(String songName) {
