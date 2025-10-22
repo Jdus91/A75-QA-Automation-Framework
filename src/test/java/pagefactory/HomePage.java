@@ -15,6 +15,12 @@ public class HomePage extends BasePage {
     @FindBy(css = "img.avatar")
     WebElement userAvatarIcon;
 
+    @FindBy(xpath = "//*[@id='app']/div/div/form")
+    WebElement loginFormContainer;
+
+    @FindBy(xpath = "//*[@id='app']/div/div/form/input[1]")
+    WebElement emailInput;
+    
     @FindBy(css = "input[type='search']")
     WebElement searchField;
 
@@ -48,6 +54,11 @@ public class HomePage extends BasePage {
 
     public WebElement getUserAvatar() {
         return findElement(userAvatarIcon);
+    }
+    public void assertLoginFailed() {
+        // Wait for the 'class' attribute of the loginFormContainer to contain "error".
+        // This is the assertion for failed login.
+        wait.until(ExpectedConditions.attributeContains(loginFormContainer, "class", "error"));
     }
 
     public void searchSong(String songName) {

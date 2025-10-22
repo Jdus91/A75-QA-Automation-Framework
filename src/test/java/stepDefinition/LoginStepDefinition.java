@@ -24,7 +24,7 @@ public class LoginStepDefinition {
     WebDriver driver;
     WebDriverWait wait;
 
-    @Given("I open browser")
+    @Before
     public void openBrowser() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
@@ -34,7 +34,7 @@ public class LoginStepDefinition {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @And("I open Login Page")
+    @Given("I open Login Page")
     public void iOpenLoginPage() {
         // Write code here that turns the phrase above into concrete actions
         driver.get("https://qa.koel.app");
@@ -61,7 +61,7 @@ public class LoginStepDefinition {
     @And("I submit")
     public void iSubmit() {
         // Write code here that turns the phrase above into concrete actions
-        LoginPage loginPage= new LoginPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.clickSubmit();
         /*wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[type='submit']"))).click();*/
     }
@@ -75,8 +75,20 @@ public class LoginStepDefinition {
         //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar"))).isDisplayed());
     }
 
+    @Then("I see an error message")
+    public void iSeeAnErrorMessage() {
+        HomePage homePage = new HomePage(driver);
+        homePage.assertLoginFailed();
+        //By formLocator = By.xpath("//*[@id='app']/div/div/form");
+        //wait.until(ExpectedConditions.attributeContains(formLocator, "class", "error"));
+        //Assert.assertTrue(wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='app']/div/div/form"))).isDisplayed());
+    }
+
     @After
     public void closeBrowser() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
+
