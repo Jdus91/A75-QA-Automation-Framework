@@ -15,9 +15,9 @@ public class PlaylistTests extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        homePage.searchSong("Down in the Swamp");
+        homePage.searchSong("Take my Hand (ID 1696)");
         homePage.clickViewAll();
-        homePage.selectSongByTitle("Down in the Swamp");
+        homePage.selectSongByTitle("Take my Hand (ID 1696)");
         homePage.clickAddToButton();
         homePage.choosePlaylist("Jennys Playlist");
 
