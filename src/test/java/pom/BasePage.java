@@ -9,8 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
-import static org.testng.internal.Utils.log;
-
 public class BasePage {
     public static final Logger log = LoggerFactory.getLogger(BasePage.class);
     WebDriver driver;
