@@ -36,7 +36,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//a[contains(@href, '/playlist/105750')]")
     WebElement currentPlaylist;
 
-    @FindBy(xpath = "//a[contains(@href, '/playlist/106082')]")
+    @FindBy(xpath = "//a[contains(@href, '/playlist/106208')]")
     WebElement currentPlaylist2;
 
     @FindBy(xpath = "//button[contains(@class, 'btn-delete-playlist')]")
