@@ -3,8 +3,6 @@ package pagefactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import pagefactory.BasePage;
 
 public class AllSongsPage extends BasePage {
     public AllSongsPage(WebDriver givenDriver) {

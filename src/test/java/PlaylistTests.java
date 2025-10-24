@@ -6,8 +6,7 @@ import pagefactory.LoginPage;
 public class PlaylistTests extends BaseTest {
     @Test
     public void addSongToPlaylist() {
-        //LoginPage loginPage = new LoginPage(driver);
-        //HomePage homePage = new HomePage(driver);
+
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
@@ -15,9 +14,9 @@ public class PlaylistTests extends BaseTest {
 
         Assert.assertTrue(homePage.getUserAvatar().isDisplayed());
 
-        homePage.searchSong("Take my Hand (ID 1696)");
+        homePage.searchSong("Dee Yan-Key - rainday");
         homePage.clickViewAll();
-        homePage.selectSongByTitle("Take my Hand (ID 1696)");
+        homePage.selectSongByTitle("Dee Yan-Key - rainday");
         homePage.clickAddToButton();
         homePage.choosePlaylist("Jennys Playlist");
 
@@ -29,8 +28,6 @@ public class PlaylistTests extends BaseTest {
     @Test
     public void deletePlaylist() {
 
-        //LoginPage loginPage = new LoginPage(driver);
-        //HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
@@ -50,8 +47,6 @@ public class PlaylistTests extends BaseTest {
     @Test
     public void deletePlaylist2() {
 
-        //LoginPage loginPage = new LoginPage(driver);
-        //HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
@@ -71,8 +66,6 @@ public class PlaylistTests extends BaseTest {
     @Test
     public void renamePlaylist() {
 
-        //LoginPage loginPage = new LoginPage(driver);
-        //HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 
@@ -93,8 +86,6 @@ public class PlaylistTests extends BaseTest {
     @Test
     public void renamePlaylist2(){
 
-        //LoginPage loginPage = new LoginPage(driver);
-        //HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(getDriver());
         HomePage homePage = new HomePage(getDriver());
 

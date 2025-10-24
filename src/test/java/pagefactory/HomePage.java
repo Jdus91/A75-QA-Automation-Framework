@@ -97,15 +97,38 @@ public class HomePage extends BasePage {
         return findElement(notificationSuccess).getText();
     }
 
-    public void openPlaylist(String playlistName) {
+    public void openPlaylist(String playlistId) {
         doubleClick(currentPlaylist);
-    }
 
-    public void openPlaylist2(String playlistName) {
-        doubleClick(currentPlaylist2);
+
+        //public void openPlaylist(String playlistName) {
+        // WebElement playlistToOpen = wait.until(ExpectedConditions.elementToBeClickable(
+        // By.xpath("//a[contains(.,'" + playlistName + "')]")));
+        //WebElement playlistToOpen = wait.until(ExpectedConditions.elementToBeClickable(
+        //By.xpath("//a[text()='" + playlistName + "']")));
+        //doubleClick(playlistToOpen);
+    }
+        public void openPlaylist2 (String playlistId){
+            doubleClick(currentPlaylist2);
+
+//public void openPlaylist2(String playlistName) {
+        //WebElement playlistToOpen = wait.until(ExpectedConditions.elementToBeClickable(
+        //By.xpath("//a[contains(.,'" + playlistName + "')]")));
+        //WebElement playlistToOpen = wait.until(ExpectedConditions.elementToBeClickable(
+        //By.xpath("//a[text()='" + playlistName + "']")));
+        //doubleClick(playlistToOpen);
+
+
+        //public void openPlaylist2(String playlistName) {
+        // doubleClick(currentPlaylist2);
+        //}
     }
 
     public void renamePlaylist(String newPlaylistName) {
+        //WebElement inputField = wait.until(ExpectedConditions.visibilityOf(playlistInputField));
+        //inputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
+        //inputField.sendKeys(newPlaylistName);
+        //inputField.sendKeys(Keys.ENTER);
         playlistInputField = findElement(playlistInputField);
         playlistInputField.sendKeys(Keys.chord(Keys.CONTROL, "A", Keys.BACK_SPACE));
         playlistInputField.sendKeys(newPlaylistName);
